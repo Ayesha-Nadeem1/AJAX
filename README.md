@@ -1,4 +1,4 @@
-****---AJAX Weather Application Readme---****
+********---AJAX Weather Application Readme---********
 This is a simple AJAX-based weather application that allows users to fetch weather data for a specific city using the OpenWeatherMap API. The application uses HTML, JavaScript, and jQuery to make asynchronous requests to the API and dynamically update the webpage with the retrieved weather information.
 
 ****---Prerequisites---****
