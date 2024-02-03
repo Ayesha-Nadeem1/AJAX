@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Weather Application</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AJAX Weather Application</h1>
+
+    <label for="cityName">Enter City Name:</label>
+    <input type="text" id="cityName" placeholder="Enter city name">
+    <button onclick="fetchWeatherData()">Fetch Weather Data</button>
+
+    <div id="result"></div>
+
+    <script>
+        function fetchWeatherData() {
+            // Get the city name input
+            const cityName = document.getElementById("cityName").value;
+
+            // Make an AJAX request using jQuery to OpenWeatherMap API
+            $.ajax({
+                url: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=b7a74b901865c3045c62eed39903dc99`,
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    // Handle the fetched data and display it on the webpage
+                    displayWeatherData(data);
+                },
+                error: function (error) {
+                    console.error("Error fetching weather data:", error);
+                }
+            });
+        }
+
+        function displayWeatherData(weatherData) {
+            // Access the weather data and format it
+            const formattedWeatherData = `
+                <p>City: ${weatherData.name}</p>
+                <p>Temperature: ${weatherData.main.temp} &deg;C</p>
+                <p>Weather: ${weatherData.weather[0].description}</p>
+            `;
+
+            // Display the formatted weather data on the webpage
+            document.getElementById("result").innerHTML = formattedWeatherData;
+        }
+    </script>
+</body>
+</html>
